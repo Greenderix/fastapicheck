@@ -1,21 +1,16 @@
-from datetime import datetime
+from sqlalchemy import MetaData, Table, Column, Integer, String, ForeignKey, Boolean
 
-from sqlalchemy import MetaData, Table, Column, Integer, String, TIMESTAMP, ForeignKey, JSON, Boolean
-
-from models.role import role
+from models.ability import ability
+from models.characteristic import characteristic
 
 metadata = MetaData()
 
-character = Table(
-    "character",
+hero = Table(
+    "hero",
     metadata,
     Column("id", Integer, primary_key=True),
     Column("name", String, nullable=False),
-    Column("grade", Integer, nullable=False),
-    Column("registered_at", TIMESTAMP, default=datetime.utcnow),
-    Column("role_id", Integer, ForeignKey(role.c.id)),
-    Column("hashed_password", String, nullable=False),
     Column("is_active", Boolean, default=True, nullable=False),
-    Column("is_superuser", Boolean, default=False, nullable=False),
-    Column("is_verified", Boolean, default=False, nullable=False),
+    Column("ability_id", Integer, ForeignKey(ability.c.id)),
+    Column("characteristic_id", Integer, ForeignKey(characteristic.c.id)),
 )
