@@ -13,7 +13,7 @@ async def create_user(
         user: CreateUser,
         session: Session = Depends(get_session)
 ):
-    hashed_password = user.password + "sosijopu"
+    hashed_password = user.password + "sopu"
     user_ = User(
         username=user.username,
         hashed_password=hashed_password
