@@ -7,7 +7,7 @@ services:
       dockerfile: ./docker/python/Dockerfile
     ports:
       - "8000:8000"
-    command: uvicorn --reload --host 0.0.0.0 --port 8001 start:create_app
+    command: uvicorn --reload --host 0.0.0.0 --port 8000 start:create_app
     depends_on:
       - db
     env_file:
